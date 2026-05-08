@@ -1,0 +1,787 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>MadaGo - Réservation Maison</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+
+<style>
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+}
+
+body{
+font-family:'Poppins',sans-serif;
+background:#050505;
+color:white;
+padding:20px;
+}
+
+.container{
+max-width:1100px;
+margin:auto;
+background:#111;
+border-radius:35px;
+overflow:hidden;
+box-shadow:0 20px 60px rgba(0,0,0,0.4);
+}
+
+/* HEADER */
+
+.header{
+padding:60px 35px;
+text-align:center;
+background:
+linear-gradient(rgba(0,0,0,0.65),rgba(0,0,0,0.82)),
+url('https://images.unsplash.com/photo-1566073771259-6a8506099945?q=80&w=1600&auto=format&fit=crop');
+
+background-size:cover;
+background-position:center;
+}
+
+.header img{
+height:95px;
+margin-bottom:20px;
+}
+
+.header h1{
+font-size:50px;
+font-weight:900;
+margin-bottom:15px;
+}
+
+.header p{
+color:#ddd;
+line-height:1.9;
+font-size:18px;
+}
+
+/* CONTENT */
+
+.content{
+padding:40px 30px 50px;
+}
+
+.box{
+background:#181818;
+padding:30px;
+border-radius:30px;
+margin-bottom:30px;
+border:1px solid rgba(255,255,255,0.08);
+}
+
+.box h2{
+font-size:30px;
+margin-bottom:25px;
+color:#ffd000;
+}
+
+.grid{
+display:grid;
+grid-template-columns:1fr 1fr;
+gap:20px;
+}
+
+.form-group{
+margin-bottom:22px;
+}
+
+label{
+display:block;
+margin-bottom:10px;
+font-weight:600;
+}
+
+input,
+select,
+textarea{
+width:100%;
+padding:17px;
+border:none;
+border-radius:18px;
+background:#1c1c1c;
+color:white;
+font-family:'Poppins',sans-serif;
+font-size:15px;
+outline:none;
+}
+
+textarea{
+height:130px;
+resize:none;
+}
+
+/* PAYMENT */
+
+.payment-method{
+background:#111;
+padding:18px;
+border-radius:18px;
+margin-bottom:15px;
+line-height:1.9;
+border:1px solid rgba(255,255,255,0.08);
+}
+
+/* SUMMARY */
+
+.summary{
+background:#141414;
+padding:25px;
+border-radius:25px;
+line-height:2.2;
+font-size:17px;
+margin-top:30px;
+}
+
+.summary strong{
+color:#ffd000;
+}
+
+/* BUTTONS */
+
+.buttons{
+display:grid;
+grid-template-columns:1fr 1fr;
+gap:20px;
+margin-top:35px;
+}
+
+.btn{
+padding:20px;
+border:none;
+border-radius:18px;
+font-size:18px;
+font-weight:800;
+cursor:pointer;
+text-align:center;
+text-decoration:none;
+display:block;
+transition:0.3s;
+}
+
+.btn-yellow{
+background:linear-gradient(135deg,#ffd000,#ff9d00);
+color:black;
+}
+
+.btn-red{
+background:linear-gradient(135deg,#ff2d2d,#ff7300);
+color:white;
+}
+
+.btn:hover{
+transform:translateY(-4px);
+}
+
+/* RECEIPT */
+
+.receipt{
+display:none;
+margin-top:35px;
+background:#181818;
+padding:30px;
+border-radius:30px;
+line-height:2.1;
+}
+
+.receipt h2{
+margin-bottom:20px;
+color:#ffd000;
+}
+
+/* FOOTER */
+
+.footer{
+padding:35px;
+text-align:center;
+line-height:2;
+font-size:14px;
+color:#aaa;
+}
+
+/* RESPONSIVE */
+
+@media(max-width:768px){
+
+.grid{
+grid-template-columns:1fr;
+}
+
+.buttons{
+grid-template-columns:1fr;
+}
+
+.header h1{
+font-size:36px;
+}
+
+.header img{
+height:75px;
+}
+
+}
+
+</style>
+
+</head>
+
+<body>
+
+<div class="container">
+
+<!-- HEADER -->
+
+<div class="header">
+
+<img src="logo.png" alt="MadaGo">
+
+<h1>
+ Réservation Maison
+</h1>
+
+<p>
+Réservez facilement votre maison, villa ou appartement à Madagascar.
+</p>
+
+</div>
+
+<!-- CONTENT -->
+
+<div class="content">
+
+<form id="reservationForm"
+action="https://formsubmit.co/myteamsmadagascar@gmail.com"
+method="POST"
+enctype="multipart/form-data">
+
+<input type="hidden" name="_captcha" value="false">
+
+<!-- CLIENT -->
+
+<div class="box">
+
+<h2>
+ Informations client
+</h2>
+
+<div class="grid">
+
+<div class="form-group">
+
+<label>Nom & prénom</label>
+
+<input type="text"
+name="Nom"
+required>
+
+</div>
+
+<div class="form-group">
+
+<label>Téléphone WhatsApp</label>
+
+<input type="tel"
+name="Téléphone"
+required>
+
+</div>
+
+</div>
+
+</div>
+
+<!-- RESERVATION -->
+
+<div class="box">
+
+<h2>
+ Réservation
+</h2>
+
+<div class="grid">
+
+<div class="form-group">
+
+<label>Date arrivée</label>
+
+<input type="date"
+name="Date arrivée"
+required>
+
+</div>
+
+<div class="form-group">
+
+<label>Date départ</label>
+
+<input type="date"
+name="Date départ"
+required>
+
+</div>
+
+</div>
+
+<div class="grid">
+
+<div class="form-group">
+
+<label>Durée réservation</label>
+
+<select name="Durée réservation">
+
+<option>
+Quelques jours
+</option>
+
+<option>
+1 semaine
+</option>
+
+<option>
+2 semaines
+</option>
+
+<option>
+1 mois
+</option>
+
+<option>
+3 mois
+</option>
+
+<option>
+6 mois
+</option>
+
+<option>
+Annuel
+</option>
+
+<option>
+Longue durée
+</option>
+
+</select>
+
+</div>
+
+<div class="form-group">
+
+<label>Type location</label>
+
+<select name="Type location">
+
+<option>
+Maison de vacances
+</option>
+
+<option>
+Villa meublée
+</option>
+
+<option>
+Appartement
+</option>
+
+<option>
+Location mensuelle
+</option>
+
+<option>
+Location annuelle
+</option>
+
+</select>
+
+</div>
+
+</div>
+
+</div>
+
+<!-- MAISON -->
+
+<div class="box">
+
+<h2>
+ Maison / Villa
+</h2>
+
+<div class="form-group">
+
+<label>Description maison ou référence</label>
+
+<input type="text"
+name="Maison"
+placeholder="Ex : Villa plage 3 chambres">
+
+</div>
+
+<div class="grid">
+
+<div class="form-group">
+
+<label>Nombre personnes qui dort</label>
+
+<input type="number"
+name="Dormeurs"
+min="1"
+value="1">
+
+</div>
+
+<div class="form-group">
+
+<label>Nombre visiteurs le jour</label>
+
+<input type="number"
+name="Visiteurs"
+min="0"
+value="0">
+
+</div>
+
+</div>
+
+<div class="form-group">
+
+<label>Matelas supplémentaire</label>
+
+<select name="Matelas supplémentaire">
+
+<option>
+Non
+</option>
+
+<option>
+1 matelas
+</option>
+
+<option>
+2 matelas
+</option>
+
+<option>
+3 matelas
+</option>
+
+</select>
+
+</div>
+
+<div class="form-group">
+
+<label>Détails supplémentaires</label>
+
+<textarea
+name="Détails"
+placeholder="Adresse, détails, demandes particulières..."></textarea>
+
+</div>
+
+</div>
+
+<!-- PAYMENT -->
+
+<div class="box">
+
+<h2>
+ Paiement
+</h2>
+
+<div class="grid">
+
+<div class="form-group">
+
+<label>Montant total libre</label>
+
+<input type="number"
+id="total"
+name="Montant total"
+placeholder="Ex : 1500000"
+onkeyup="calculateRemaining()">
+
+</div>
+
+<div class="form-group">
+
+<label>Montant acompte</label>
+
+<input type="number"
+id="acompte"
+name="Montant acompte"
+placeholder="Ex : 500000"
+onkeyup="calculateRemaining()">
+
+</div>
+
+</div>
+
+<div class="grid">
+
+<div class="form-group">
+
+<label>Montant restant</label>
+
+<input type="text"
+id="restant"
+name="Montant restant"
+readonly>
+
+</div>
+
+<div class="form-group">
+
+<label>À payer le</label>
+
+<input type="date"
+name="Date paiement restant">
+
+</div>
+
+</div>
+
+<div class="summary">
+
+<div>
+ Total :
+<strong id="showTotal">0 Ar</strong>
+</div>
+
+<div>
+ Acompte :
+<strong id="showAcompte">0 Ar</strong>
+</div>
+
+<div>
+ Reste :
+<strong id="showRestant">0 Ar</strong>
+</div>
+
+</div>
+
+</div>
+
+<!-- MOBILE MONEY -->
+
+<div class="box">
+
+<h2>
+ Paiement Mobile Money
+</h2>
+
+<div class="payment-method">
+
+<strong>Mvola</strong><br>
+034 66 974 78
+
+</div>
+
+<div class="payment-method">
+
+<strong>Orange Money</strong><br>
+032 60 964 49
+
+</div>
+
+<div class="payment-method">
+
+<strong>Airtel Money</strong><br>
+033 29 430 07<br>
+Nom : Finiavana
+
+</div>
+
+</div>
+
+<!-- FILES -->
+
+<div class="box">
+
+<h2>
+ Pièces jointes
+</h2>
+
+<div class="form-group">
+
+<label>Capture maison choisie</label>
+
+<input type="file"
+name="Capture maison"
+accept="image/*">
+
+</div>
+
+<div class="form-group">
+
+<label>Capture paiement</label>
+
+<input type="file"
+name="Capture paiement"
+accept="image/*">
+
+</div>
+
+<div class="form-group">
+
+<label>Détails paiement</label>
+
+<textarea
+name="Détails paiement"
+placeholder="Référence transaction, heure, nom expéditeur..."></textarea>
+
+</div>
+
+</div>
+
+<!-- BUTTONS -->
+
+<div class="buttons">
+
+<button class="btn btn-yellow"
+type="button"
+onclick="generateReceipt()">
+
+ Générer reçu
+
+</button>
+
+<a class="btn btn-red"
+href="contrat.html">
+
+ Signer contrat
+
+</a>
+
+</div>
+
+<!-- RECEIPT -->
+
+<div class="receipt"
+id="receipt">
+
+<h2>
+ Reçu automatique
+</h2>
+
+<div id="receiptContent"></div>
+
+<button class="btn btn-yellow"
+style="margin-top:25px;width:100%;"
+type="submit">
+
+Envoyer réservation
+
+</button>
+
+</div>
+
+</form>
+
+</div>
+
+<!-- FOOTER -->
+
+<div class="footer">
+
+MadaGo Réservation<br>
+
+WhatsApp : 033 29 430 07<br>
+
+Réservation sécurisée • Madagascar
+
+</div>
+
+</div>
+
+<script>
+
+function calculateRemaining(){
+
+let total =
+parseInt(document.getElementById('total').value) || 0;
+
+let acompte =
+parseInt(document.getElementById('acompte').value) || 0;
+
+let restant =
+total - acompte;
+
+document.getElementById('restant').value =
+restant.toLocaleString('fr-FR') + ' Ar';
+
+document.getElementById('showTotal').innerHTML =
+total.toLocaleString('fr-FR') + ' Ar';
+
+document.getElementById('showAcompte').innerHTML =
+acompte.toLocaleString('fr-FR') + ' Ar';
+
+document.getElementById('showRestant').innerHTML =
+restant.toLocaleString('fr-FR') + ' Ar';
+
+}
+
+function generateReceipt(){
+
+let form =
+document.getElementById('reservationForm');
+
+let nom =
+form.querySelector('[name=\"Nom\"]').value;
+
+let telephone =
+form.querySelector('[name=\"Téléphone\"]').value;
+
+let maison =
+form.querySelector('[name=\"Maison\"]').value;
+
+let total =
+document.getElementById('showTotal').innerHTML;
+
+let acompte =
+document.getElementById('showAcompte').innerHTML;
+
+let restant =
+document.getElementById('showRestant').innerHTML;
+
+let receipt = `
+
+<strong>Client :</strong> ${nom}<br>
+
+<strong>Téléphone :</strong> ${telephone}<br>
+
+<strong>Maison :</strong> ${maison}<br>
+
+<strong>Total :</strong> ${total}<br>
+
+<strong>Acompte :</strong> ${acompte}<br>
+
+<strong>Reste :</strong> ${restant}<br><br>
+
+Merci pour votre réservation chez MadaGo.
+
+`;
+
+document.getElementById('receiptContent').innerHTML =
+receipt;
+
+document.getElementById('receipt').style.display =
+'block';
+
+}
+
+</script>
+
+</body>
+</html>

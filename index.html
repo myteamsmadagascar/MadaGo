@@ -1,0 +1,693 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>MadaGo Réservation</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+
+<style>
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+}
+
+body{
+font-family:'Poppins',sans-serif;
+background:#050505;
+color:white;
+overflow-x:hidden;
+}
+
+/* HERO */
+
+.hero{
+position:relative;
+min-height:100vh;
+overflow:hidden;
+}
+
+.hero-slider{
+position:absolute;
+top:0;
+left:0;
+width:100%;
+height:100%;
+z-index:-3;
+}
+
+.hero-slide{
+position:absolute;
+width:100%;
+height:100%;
+background-size:cover;
+background-position:center;
+opacity:0;
+animation:heroFade 25s infinite;
+}
+
+.hero-slide:nth-child(1){
+animation-delay:0s;
+}
+
+.hero-slide:nth-child(2){
+animation-delay:5s;
+}
+
+.hero-slide:nth-child(3){
+animation-delay:10s;
+}
+
+.hero-slide:nth-child(4){
+animation-delay:15s;
+}
+
+.hero-slide:nth-child(5){
+animation-delay:20s;
+}
+
+@keyframes heroFade{
+
+0%{
+opacity:0;
+}
+
+10%{
+opacity:1;
+}
+
+20%{
+opacity:1;
+}
+
+30%{
+opacity:0;
+}
+
+100%{
+opacity:0;
+}
+
+}
+
+.overlay{
+position:absolute;
+top:0;
+left:0;
+width:100%;
+height:100%;
+background:
+linear-gradient(rgba(0,0,0,0.82),rgba(0,0,0,0.88));
+z-index:-2;
+}
+
+.red-light{
+position:absolute;
+top:-200px;
+right:-200px;
+width:600px;
+height:600px;
+background:rgba(255,0,0,0.18);
+filter:blur(140px);
+z-index:-1;
+}
+
+.yellow-light{
+position:absolute;
+bottom:-250px;
+left:-150px;
+width:500px;
+height:500px;
+background:rgba(255,200,0,0.18);
+filter:blur(130px);
+z-index:-1;
+}
+
+/* CONTAINER */
+
+.container{
+max-width:1250px;
+margin:auto;
+padding:35px 20px 60px;
+}
+
+/* HEADER */
+
+.header{
+display:flex;
+justify-content:space-between;
+align-items:center;
+margin-bottom:80px;
+flex-wrap:wrap;
+gap:20px;
+}
+
+.logo{
+display:flex;
+align-items:center;
+gap:18px;
+}
+
+.logo img{
+height:95px;
+}
+
+.brand{
+font-size:42px;
+font-weight:900;
+line-height:1;
+}
+
+.brand span{
+color:#ffd000;
+}
+
+.tag{
+color:#ff4040;
+font-size:14px;
+letter-spacing:3px;
+margin-top:8px;
+font-weight:700;
+}
+
+/* HERO CONTENT */
+
+.hero-content{
+text-align:center;
+max-width:980px;
+margin:auto;
+}
+
+.hero-content h1{
+font-size:78px;
+line-height:1.05;
+margin-bottom:28px;
+font-weight:900;
+}
+
+.hero-content h1 span{
+color:#ffd000;
+}
+
+.hero-content p{
+font-size:22px;
+line-height:1.9;
+color:#ddd;
+margin-bottom:55px;
+}
+
+/* BADGES */
+
+.badges{
+display:flex;
+justify-content:center;
+flex-wrap:wrap;
+gap:18px;
+margin-bottom:60px;
+}
+
+.badge{
+background:rgba(255,255,255,0.08);
+padding:15px 22px;
+border-radius:50px;
+border:1px solid rgba(255,255,255,0.08);
+font-weight:600;
+backdrop-filter:blur(10px);
+}
+
+/* CARDS */
+
+.cards{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(350px,1fr));
+gap:35px;
+}
+
+.card{
+position:relative;
+overflow:hidden;
+border-radius:32px;
+background:rgba(255,255,255,0.06);
+border:1px solid rgba(255,255,255,0.08);
+backdrop-filter:blur(10px);
+transition:0.35s;
+}
+
+.card:hover{
+transform:translateY(-8px);
+}
+
+.card-slider{
+position:relative;
+height:270px;
+overflow:hidden;
+}
+
+.card-slide{
+position:absolute;
+width:100%;
+height:100%;
+background-size:cover;
+background-position:center;
+opacity:0;
+animation:cardFade 20s infinite;
+}
+
+.card-slide:nth-child(1){
+animation-delay:0s;
+}
+
+.card-slide:nth-child(2){
+animation-delay:4s;
+}
+
+.card-slide:nth-child(3){
+animation-delay:8s;
+}
+
+.card-slide:nth-child(4){
+animation-delay:12s;
+}
+
+.card-slide:nth-child(5){
+animation-delay:16s;
+}
+
+@keyframes cardFade{
+
+0%{
+opacity:0;
+}
+
+10%{
+opacity:1;
+}
+
+20%{
+opacity:1;
+}
+
+30%{
+opacity:0;
+}
+
+100%{
+opacity:0;
+}
+
+}
+
+.card-content{
+padding:35px;
+}
+
+.card-content h2{
+font-size:38px;
+margin-bottom:18px;
+font-weight:800;
+}
+
+.card-content p{
+color:#ddd;
+line-height:1.9;
+margin-bottom:30px;
+}
+
+.btn{
+display:inline-block;
+padding:18px 35px;
+background:linear-gradient(135deg,#ffd000,#ffae00);
+color:black;
+font-weight:800;
+text-decoration:none;
+border-radius:16px;
+font-size:17px;
+transition:0.3s;
+}
+
+.btn:hover{
+transform:scale(1.04);
+}
+
+/* CONTACT */
+
+.contact{
+margin-top:70px;
+background:rgba(255,255,255,0.06);
+padding:45px;
+border-radius:32px;
+border:1px solid rgba(255,255,255,0.08);
+backdrop-filter:blur(10px);
+}
+
+.contact h3{
+font-size:42px;
+margin-bottom:18px;
+}
+
+.contact p{
+color:#ddd;
+line-height:1.9;
+margin-bottom:30px;
+}
+
+.form-grid{
+display:grid;
+grid-template-columns:1fr 1fr;
+gap:20px;
+}
+
+input,
+textarea{
+width:100%;
+padding:18px;
+border:none;
+border-radius:16px;
+background:#111;
+color:white;
+font-family:'Poppins',sans-serif;
+font-size:15px;
+}
+
+textarea{
+height:150px;
+resize:none;
+grid-column:1/-1;
+}
+
+.send-btn{
+margin-top:20px;
+padding:18px 40px;
+border:none;
+border-radius:16px;
+background:linear-gradient(135deg,#ff2d2d,#ff9800);
+color:white;
+font-size:18px;
+font-weight:800;
+cursor:pointer;
+}
+
+/* FOOTER */
+
+.footer{
+margin-top:70px;
+text-align:center;
+line-height:2;
+font-size:14px;
+color:#bbb;
+}
+
+/* WHATSAPP FLOAT */
+
+.whatsapp-float{
+position:fixed;
+bottom:25px;
+right:20px;
+width:75px;
+height:75px;
+background:#25D366;
+border-radius:50%;
+display:flex;
+justify-content:center;
+align-items:center;
+font-size:36px;
+text-decoration:none;
+box-shadow:0 10px 30px rgba(0,0,0,0.35);
+z-index:999;
+animation:float 2s infinite ease-in-out;
+}
+
+@keyframes float{
+
+0%{
+transform:translateY(0px);
+}
+
+50%{
+transform:translateY(-6px);
+}
+
+100%{
+transform:translateY(0px);
+}
+
+}
+
+/* RESPONSIVE */
+
+@media(max-width:900px){
+
+.hero-content h1{
+font-size:48px;
+}
+
+.hero-content p{
+font-size:18px;
+}
+
+.form-grid{
+grid-template-columns:1fr;
+}
+
+.logo img{
+height:75px;
+}
+
+.brand{
+font-size:30px;
+}
+
+}
+
+</style>
+</head>
+
+<body>
+
+<section class="hero">
+
+<div class="hero-slider">
+
+<div class="hero-slide" style="background-image:url('https://images.unsplash.com/photo-1492144534655-ae79c964c9d7?q=80&w=1600&auto=format&fit=crop');"></div>
+
+<div class="hero-slide" style="background-image:url('https://images.unsplash.com/photo-1503376780353-7e6692767b70?q=80&w=1600&auto=format&fit=crop');"></div>
+
+<div class="hero-slide" style="background-image:url('https://images.unsplash.com/photo-1566073771259-6a8506099945?q=80&w=1600&auto=format&fit=crop');"></div>
+
+<div class="hero-slide" style="background-image:url('https://images.unsplash.com/photo-1522708323590-d24dbb6b0267?q=80&w=1600&auto=format&fit=crop');"></div>
+
+<div class="hero-slide" style="background-image:url('https://images.unsplash.com/photo-1505693416388-ac5ce068fe85?q=80&w=1600&auto=format&fit=crop');"></div>
+
+</div>
+
+<div class="overlay"></div>
+
+<div class="red-light"></div>
+
+<div class="yellow-light"></div>
+
+<div class="container">
+
+<div class="header">
+
+<div class="logo">
+
+<img src="logo.png" alt="MadaGo">
+
+<div>
+
+<div class="brand">
+Mada<span>Go</span>
+</div>
+
+<div class="tag">
+RÉSERVATION PREMIUM
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+<div class="hero-content">
+
+<h1>
+Réservez vos <span>voitures</span><br>
+et maisons de vacances
+</h1>
+
+<p>
+Location automobile avec chauffeur, SUV, minibus, villas, appartements et maisons de vacances à Madagascar.
+</p>
+
+<div class="badges">
+
+<div class="badge">
+ Véhicules avec chauffeur
+</div>
+
+<div class="badge">
+ Villas & maisons
+</div>
+
+<div class="badge">
+ Réservation rapide
+</div>
+
+<div class="badge">
+ Service sécurisé
+</div>
+
+</div>
+
+<div class="cards">
+
+<!-- VOITURES -->
+
+<div class="card">
+
+<div class="card-slider">
+
+<div class="card-slide" style="background-image:url('https://images.unsplash.com/photo-1492144534655-ae79c964c9d7?q=80&w=1200&auto=format&fit=crop');"></div>
+
+<div class="card-slide" style="background-image:url('https://images.unsplash.com/photo-1503376780353-7e6692767b70?q=80&w=1200&auto=format&fit=crop');"></div>
+
+<div class="card-slide" style="background-image:url('https://images.unsplash.com/photo-1519641471654-76ce0107ad1b?q=80&w=1200&auto=format&fit=crop');"></div>
+
+<div class="card-slide" style="background-image:url('https://images.unsplash.com/photo-1544636331-e26879cd4d9b?q=80&w=1200&auto=format&fit=crop');"></div>
+
+<div class="card-slide" style="background-image:url('https://images.unsplash.com/photo-1553440569-bcc63803a83d?q=80&w=1200&auto=format&fit=crop');"></div>
+
+</div>
+
+<div class="card-content">
+
+<h2>
+ Réservez voiture
+</h2>
+
+<p>
+Chevrolet Lacetti, Tiguan SUV, Nissan Patrol, minibus et autres véhicules disponibles avec chauffeur.
+</p>
+
+<a class="btn" href="voiture.html">
+Réserver maintenant
+</a>
+
+</div>
+
+</div>
+
+<!-- MAISONS -->
+
+<div class="card">
+
+<div class="card-slider">
+
+<div class="card-slide" style="background-image:url('https://images.unsplash.com/photo-1566073771259-6a8506099945?q=80&w=1200&auto=format&fit=crop');"></div>
+
+<div class="card-slide" style="background-image:url('https://images.unsplash.com/photo-1522708323590-d24dbb6b0267?q=80&w=1200&auto=format&fit=crop');"></div>
+
+<div class="card-slide" style="background-image:url('https://images.unsplash.com/photo-1505693416388-ac5ce068fe85?q=80&w=1200&auto=format&fit=crop');"></div>
+
+<div class="card-slide" style="background-image:url('https://images.unsplash.com/photo-1502672260266-1c1ef2d93688?q=80&w=1200&auto=format&fit=crop');"></div>
+
+<div class="card-slide" style="background-image:url('https://images.unsplash.com/photo-1494526585095-c41746248156?q=80&w=1200&auto=format&fit=crop');"></div>
+
+</div>
+
+<div class="card-content">
+
+<h2>
+ Réservez maison
+</h2>
+
+<p>
+Maisons de vacances, villas meublées et appartements disponibles en bord de plage ou en centre-ville.
+</p>
+
+<a class="btn" href="maison.html">
+Réserver maintenant
+</a>
+
+</div>
+
+</div>
+
+</div>
+
+<!-- CONTACT -->
+
+<div class="contact">
+
+<h3>
+ Écrire à MadaGo
+</h3>
+
+<p>
+Besoin d'informations ou d'une réservation personnalisée ?
+Envoyez-nous directement votre demande.
+</p>
+
+<form action="https://formsubmit.co/myteamsmadagascar@gmail.com" method="POST">
+
+<input type="hidden" name="_captcha" value="false">
+
+<div class="form-grid">
+
+<input type="text"
+name="Nom"
+placeholder="Votre nom"
+required>
+
+<input type="tel"
+name="Téléphone"
+placeholder="Téléphone / WhatsApp"
+required>
+
+<textarea
+name="Message"
+placeholder="Votre message..."
+required></textarea>
+
+</div>
+
+<button class="send-btn" type="submit">
+Envoyer message
+</button>
+
+</form>
+
+</div>
+
+<div class="footer">
+
+MadaGo Réservation<br>
+
+Réservation sécurisée • Madagascar<br>
+
+WhatsApp : 033 29 430 07
+
+</div>
+
+</div>
+
+</section>
+
+<a class="whatsapp-float"
+href="https://wa.me/261332943007"
+target="_blank">
+
+</a>
+
+</body>
+</html>

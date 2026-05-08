@@ -1,0 +1,886 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Contrat MadaGo</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+
+<script src="https://cdn.jsdelivr.net/npm/signature_pad@4.0.0/dist/signature_pad.umd.min.js"></script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+
+<style>
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+}
+
+body{
+font-family:'Poppins',sans-serif;
+background:#f2f2f2;
+padding:20px;
+color:#111;
+}
+
+.contract{
+max-width:1150px;
+margin:auto;
+background:white;
+border-radius:30px;
+overflow:hidden;
+box-shadow:0 15px 50px rgba(0,0,0,0.15);
+}
+
+/* HEADER */
+
+.header{
+padding:45px;
+background:#111;
+color:white;
+text-align:center;
+}
+
+.header img{
+max-width:100%;
+border-radius:14px;
+margin-bottom:25px;
+}
+
+.header h1{
+font-size:46px;
+margin-bottom:15px;
+}
+
+.header p{
+line-height:2;
+color:#ddd;
+}
+
+/* CONTENT */
+
+.content{
+padding:40px 30px;
+}
+
+.section{
+margin-bottom:35px;
+padding:30px;
+background:#fafafa;
+border-radius:25px;
+border:1px solid #eee;
+}
+
+.section h2{
+font-size:28px;
+margin-bottom:25px;
+color:#c79600;
+}
+
+.grid{
+display:grid;
+grid-template-columns:1fr 1fr;
+gap:20px;
+}
+
+.form-group{
+margin-bottom:20px;
+}
+
+label{
+display:block;
+margin-bottom:8px;
+font-weight:600;
+}
+
+input,
+select,
+textarea{
+width:100%;
+padding:16px;
+border-radius:14px;
+border:1px solid #ddd;
+font-family:'Poppins',sans-serif;
+font-size:15px;
+}
+
+textarea{
+height:120px;
+resize:none;
+}
+
+ul{
+padding-left:20px;
+line-height:2;
+}
+
+.summary{
+background:#fff8e1;
+padding:25px;
+border-radius:20px;
+line-height:2;
+border:1px solid #ffe08a;
+}
+
+.signature-box{
+background:white;
+padding:20px;
+border-radius:20px;
+border:2px dashed #bbb;
+margin-top:20px;
+}
+
+canvas{
+width:100%;
+height:220px;
+border:1px solid #ccc;
+border-radius:15px;
+background:white;
+}
+
+.buttons{
+display:grid;
+grid-template-columns:1fr 1fr 1fr;
+gap:15px;
+margin-top:25px;
+}
+
+.btn{
+padding:18px;
+border:none;
+border-radius:16px;
+font-size:16px;
+font-weight:800;
+cursor:pointer;
+transition:0.3s;
+}
+
+.btn-yellow{
+background:linear-gradient(135deg,#ffd000,#ff9d00);
+color:black;
+}
+
+.btn-red{
+background:linear-gradient(135deg,#ff2d2d,#ff7300);
+color:white;
+}
+
+.btn-black{
+background:#111;
+color:white;
+}
+
+.btn:hover{
+transform:translateY(-3px);
+}
+
+.footer{
+padding:30px;
+text-align:center;
+font-size:14px;
+line-height:2;
+color:#777;
+}
+
+@media(max-width:768px){
+
+.grid{
+grid-template-columns:1fr;
+}
+
+.buttons{
+grid-template-columns:1fr;
+}
+
+.header h1{
+font-size:34px;
+}
+
+}
+
+</style>
+
+</head>
+
+<body>
+
+<form id="contractForm"
+action="https://formsubmit.co/myteamsmadagascar@gmail.com"
+method="POST"
+enctype="multipart/form-data">
+
+<input type="hidden" name="_captcha" value="false">
+
+<input type="hidden"
+name="_cc"
+id="ccEmail">
+
+<div class="contract" id="contractPdf">
+
+<!-- HEADER -->
+
+<div class="header">
+
+<img src="entete.png" alt="MadaGo">
+
+<h1>
+Contrat MadaGo
+</h1>
+
+<p>
+
+Référence contrat :
+<strong id="contractRef"></strong><br><br>
+
+Portail Web de location de voiture et maison<br>
+
+Siège Social : Antananarivo, Madagascar<br><br>
+
+NIF : 2003151055<br>
+STAT : 63122112018005725<br>
+RCS : 2018 A 01422
+
+</p>
+
+</div>
+
+<!-- CONTENT -->
+
+<div class="content">
+
+<!-- CLIENT -->
+
+<div class="section">
+
+<h2>
+Informations client
+</h2>
+
+<div class="grid">
+
+<div class="form-group">
+<label>Nom</label>
+<input type="text" id="nom" required>
+</div>
+
+<div class="form-group">
+<label>Prénom</label>
+<input type="text" id="prenom" required>
+</div>
+
+<div class="form-group">
+<label>Email</label>
+<input type="email" id="email" required onkeyup="copyEmail()">
+</div>
+
+<div class="form-group">
+<label>Téléphone</label>
+<input type="tel">
+</div>
+
+<div class="form-group">
+<label>Nationalité</label>
+<input type="text">
+</div>
+
+<div class="form-group">
+<label>CIN ou Passeport</label>
+<input type="text" required>
+</div>
+
+</div>
+
+</div>
+
+<!-- TYPE -->
+
+<div class="section">
+
+<h2>
+Type location
+</h2>
+
+<div class="grid">
+
+<div class="form-group">
+
+<label>Choix location</label>
+
+<select id="locationType"
+onchange="toggleSections(); updateSummary();">
+
+<option value="voiture">
+Voiture
+</option>
+
+<option value="maison">
+Maison
+</option>
+
+<option value="mixte">
+Voiture + Maison
+</option>
+
+</select>
+
+</div>
+
+<div class="form-group">
+
+<label>Durée</label>
+
+<select id="duree"
+onchange="updateSummary()">
+
+<option>
+1 jour
+</option>
+
+<option>
+Plusieurs jours
+</option>
+
+<option>
+1 semaine
+</option>
+
+<option>
+1 mois
+</option>
+
+<option>
+Annuel
+</option>
+
+</select>
+
+</div>
+
+</div>
+
+</div>
+
+<!-- VOITURE -->
+
+<div class="section" id="voitureSection">
+
+<h2>
+ Informations véhicule
+</h2>
+
+<div class="grid">
+
+<div class="form-group">
+
+<label>Type véhicule</label>
+
+<select id="vehicule"
+onchange="updateSummary()">
+
+<option>
+Chevrolet Lacetti
+</option>
+
+<option>
+Tiguan SUV
+</option>
+
+<option>
+Nissan Patrol
+</option>
+
+<option>
+Minibus
+</option>
+
+<option>
+Camion déménagement
+</option>
+
+<option>
+Autre véhicule
+</option>
+
+</select>
+
+</div>
+
+<div class="form-group">
+
+<label>Avec chauffeur</label>
+
+<select>
+
+<option>
+Oui
+</option>
+
+<option>
+Non
+</option>
+
+</select>
+
+</div>
+
+</div>
+
+<ul>
+
+<li>
+MadaGo s'engage à offrir un service de qualité avec assurance et visite technique à jour.
+</li>
+
+<li>
+Le client reste responsable des dégâts causés durant la location.
+</li>
+
+<li>
+En cas d'accident, un constat sera effectué.
+</li>
+
+<li>
+Les repas et hébergement chauffeur restent à la charge du client pour plusieurs jours.
+</li>
+
+</ul>
+
+</div>
+
+<!-- MAISON -->
+
+<div class="section"
+id="maisonSection"
+style="display:none;">
+
+<h2>
+ Informations maison
+</h2>
+
+<div class="grid">
+
+<div class="form-group">
+
+<label>Type logement</label>
+
+<select id="maisonType"
+onchange="updateSummary()">
+
+<option>
+Maison vacances
+</option>
+
+<option>
+Villa meublée
+</option>
+
+<option>
+Appartement
+</option>
+
+<option>
+Location annuelle
+</option>
+
+</select>
+
+</div>
+
+<div class="form-group">
+
+<label>Nombre occupants</label>
+
+<input type="number">
+
+</div>
+
+</div>
+
+<ul>
+
+<li>
+Le client s'engage à respecter les lieux et voisinage.
+</li>
+
+<li>
+La personne signataire du présent contrat reste responsable de tout accident survenant dans la maison durant son séjour.
+</li>
+
+<li>
+Les clés doivent être remises après vérification des états des lieux.
+</li>
+
+<li>
+Tout objet disparu ou détérioré sera déduit de la caution.
+</li>
+
+</ul>
+
+</div>
+
+<!-- MIXTE -->
+
+<div class="section"
+id="mixteSection"
+style="display:none;">
+
+<h2>
+ Conditions voiture & maison
+</h2>
+
+<ul>
+
+<li>
+Le client reconnaît accepter les conditions liées au véhicule et au logement.
+</li>
+
+<li>
+Les dégâts matériels restent à la charge du client.
+</li>
+
+<li>
+La personne signataire reste responsable durant toute la durée du séjour.
+</li>
+
+<li>
+Les repas chauffeur et hébergement restent à la charge du client pour location prolongée.
+</li>
+
+</ul>
+
+</div>
+
+<!-- CAUTION -->
+
+<div class="section">
+
+<h2>
+ Caution & paiement
+</h2>
+
+<div class="grid">
+
+<div class="form-group">
+
+<label>Montant caution convenu</label>
+
+<input type="number"
+id="caution"
+onkeyup="updateSummary()">
+
+</div>
+
+<div class="form-group">
+
+<label>Montant location</label>
+
+<input type="number"
+id="montant"
+onkeyup="updateSummary()">
+
+</div>
+
+</div>
+
+</div>
+
+<!-- SUMMARY -->
+
+<div class="section">
+
+<h2>
+ Afficher mon contrat
+</h2>
+
+<div class="summary" id="summaryBox">
+
+Aucun récapitulatif disponible.
+
+</div>
+
+</div>
+
+<!-- SIGNATURE -->
+
+<div class="section">
+
+<h2>
+ Signature électronique
+</h2>
+
+<p style="line-height:2; margin-bottom:20px;">
+
+Je soussigné(e), reconnais être d'accord avec les termes du présent contrat.
+
+</p>
+
+<div class="signature-box">
+
+<canvas id="signature-pad"></canvas>
+
+<div class="buttons">
+
+<button type="button"
+class="btn btn-red"
+onclick="clearSignature()">
+
+Effacer signature
+
+</button>
+
+<button type="button"
+class="btn btn-yellow"
+onclick="downloadPDF()">
+
+Télécharger mon contrat
+
+</button>
+
+<button type="submit"
+class="btn btn-black">
+
+Envoyer mon contrat à MadaGo
+
+</button>
+
+</div>
+
+</div>
+
+</div>
+
+<!-- FACTURE -->
+
+<div class="section">
+
+<h2>
+ Obtenir facture automatique
+</h2>
+
+<div class="summary" id="invoiceBox">
+
+Facture générée automatiquement après remplissage.
+
+</div>
+
+</div>
+
+</div>
+
+<!-- FOOTER -->
+
+<div class="footer">
+
+MadaGo Réservation<br>
+
+Antananarivo • Madagascar<br>
+
+WhatsApp : 033 29 430 07
+
+</div>
+
+</div>
+
+</form>
+
+<script>
+
+/* REFERENCE */
+
+const reference =
+"MGO-" + Date.now();
+
+document.getElementById("contractRef").innerHTML =
+reference;
+
+/* EMAIL COPY */
+
+function copyEmail(){
+
+document.getElementById('ccEmail').value =
+document.getElementById('email').value;
+
+}
+
+/* TOGGLE */
+
+function toggleSections(){
+
+let type =
+document.getElementById('locationType').value;
+
+document.getElementById('voitureSection').style.display =
+(type === 'voiture') ? 'block' : 'none';
+
+document.getElementById('maisonSection').style.display =
+(type === 'maison') ? 'block' : 'none';
+
+document.getElementById('mixteSection').style.display =
+(type === 'mixte') ? 'block' : 'none';
+
+updateSummary();
+
+}
+
+/* SUMMARY */
+
+function updateSummary(){
+
+let type =
+document.getElementById('locationType').value;
+
+let duree =
+document.getElementById('duree').value;
+
+let caution =
+document.getElementById('caution').value || 0;
+
+let montant =
+document.getElementById('montant').value || 0;
+
+let text = `
+<strong>Référence :</strong> ${reference}<br>
+<strong>Durée :</strong> ${duree}<br>
+<strong>Caution :</strong> ${caution} Ar<br>
+<strong>Montant :</strong> ${montant} Ar<br>
+`;
+
+if(type === 'voiture'){
+
+let vehicule =
+document.getElementById('vehicule').value;
+
+text += `
+<strong>Location :</strong> Véhicule<br>
+<strong>Véhicule :</strong> ${vehicule}<br>
+`;
+
+}
+
+if(type === 'maison'){
+
+let maison =
+document.getElementById('maisonType').value;
+
+text += `
+<strong>Location :</strong> Maison<br>
+<strong>Logement :</strong> ${maison}<br>
+`;
+
+}
+
+if(type === 'mixte'){
+
+text += `
+<strong>Location :</strong> Voiture + Maison
+`;
+
+}
+
+document.getElementById('summaryBox').innerHTML =
+text;
+
+document.getElementById('invoiceBox').innerHTML =
+`
+<strong>FACTURE AUTOMATIQUE</strong><br><br>
+
+Référence : ${reference}<br>
+Montant : ${montant} Ar<br>
+Caution : ${caution} Ar<br>
+Durée : ${duree}
+`;
+
+}
+
+/* SIGNATURE */
+
+const canvas =
+document.getElementById('signature-pad');
+
+const signaturePad =
+new SignaturePad(canvas);
+
+function resizeCanvas(){
+
+const ratio =
+Math.max(window.devicePixelRatio || 1,1);
+
+canvas.width =
+canvas.offsetWidth * ratio;
+
+canvas.height =
+canvas.offsetHeight * ratio;
+
+canvas.getContext("2d").scale(ratio, ratio);
+
+signaturePad.clear();
+
+}
+
+window.addEventListener("resize", resizeCanvas);
+
+resizeCanvas();
+
+function clearSignature(){
+
+signaturePad.clear();
+
+}
+
+/* PDF */
+
+function downloadPDF(){
+
+if(signaturePad.isEmpty()){
+
+alert("Veuillez signer le contrat.");
+
+return;
+
+}
+
+html2pdf()
+
+.set({
+
+margin:0.5,
+
+filename:'Contrat_MadaGo_'+reference+'.pdf',
+
+image:{
+type:'jpeg',
+quality:0.98
+},
+
+html2canvas:{
+scale:2
+},
+
+jsPDF:{
+unit:'in',
+format:'a4',
+orientation:'portrait'
+}
+
+})
+
+.from(document.getElementById('contractPdf'))
+
+.save();
+
+}
+
+toggleSections();
+
+</script>
+
+</body>
+</html>
